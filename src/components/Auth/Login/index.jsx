@@ -1,17 +1,49 @@
+import { useState } from "react"
+
 export const Login = () => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+
+        // email patter
+        const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+        if (!emailPattern.test(email)) {
+            setEmailError("Incurrect email patter");
+            return;
+        }
+        // password patter
+        const passwordPattern = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+        if (!passwordPattern.test(password)) {
+            setPasswordError("Password requirements: 8-20 characters, 1 number, 1 letter, 1 symbol.");
+            return;
+        }
+
+
+        const data = {email, password}
+        console.log(data);
+    }
+
     return <>
         <section class="d-flex justify-content-md-center align-items-center vh-100">
             <div className="shadow" style={{ width: "350px" }}>
                 <img height={60} width={60} className="mx-auto d-block border border-success rounded-circle mt-3" src="https://www.homestratosphere.com/wp-content/uploads/2019/07/White-ash-tree.jpg" alt="" />
-                <form action="" className="px-3 my-4">
+                <form action="" className="px-3 my-4" onSubmit={handleLogin}>
+
                     <div className="form-group">
                         <label htmlFor="" className="text-muted">Email</label>
-                        <input type="email" placeholder="xyz@gmail.com" className="form-control" name="" id="" />
+                        <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="xyz@gmail.com" className="form-control" name="" id="" />
+                        <span className="text-danger" style={{ fontSize: "10px" }}>{emailError}</span>
                     </div>
 
                     <div className="form-group mt-2">
                         <label htmlFor="" className="text-muted">Password</label>
-                        <input type="password" placeholder="xyz@gmail.com" className="form-control" name="" id="" />
+                        <input onChange={(e) => setPassword(e.target.value) } value={password} type="password" placeholder="xyz@gmail.com" className="form-control" name="" id="" />
+                        <span className="text-danger" style={{ fontSize:"10px" }}>{passwordError}</span>
                     </div>
 
                     <div className="text-center mt-3">
