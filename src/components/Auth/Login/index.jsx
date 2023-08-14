@@ -1,11 +1,15 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export const Login = () => {
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
+
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -25,6 +29,8 @@ export const Login = () => {
 
 
         const data = {email, password}
+        localStorage.setItem("token", "dummy token");
+        navigate('/dashboard')
         console.log(data);
     }
 
