@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { getToken } from "../../../utils/helper";
 
 export const Login = () => {
 
@@ -33,6 +34,22 @@ export const Login = () => {
         navigate('/dashboard')
         console.log(data);
     }
+
+
+    /* Check stored token */
+  const isTokenStored = useCallback(async () => {
+    const storedToken = await getToken();
+    if (storedToken) {
+      navigate("/dashboard");
+    } else {
+      navigate('/')
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    isTokenStored();
+  }, [isTokenStored]);
+
 
     return <>
         <section class="d-flex justify-content-md-center align-items-center vh-100">

@@ -1,3 +1,4 @@
+import { Category } from "../components/Category";
 import { DashboardLayout } from "../layouts/dashboardLayout";
 import { Navigate } from "react-router-dom";
 
@@ -10,12 +11,48 @@ const appRoutes = [
         children: [
             {
                 path: "*",
+                element: <Navigate to="/404" />,
+            },
+            { path: "", element: <>Dashboard</> },
+        ],
+    },
+
+    {
+        path: "category",
+        in_drawer: true,
+        element: <DashboardLayout />,
+        multi_menu: false,
+        children: [
+            {
+                path: "*",
                 in_drawer: false,
                 multi_menu: false,
                 element: <Navigate to="/404" />,
             },
-            { path: "", in_drawer: false, multi_menu: false, element: <>Dashboard</> },
-            { path: "user", in_drawer: false, multi_menu: false, element: <>user</> },
+            {
+                path: "",
+                in_drawer: false,
+                multi_menu: false,
+                element: <Category/>,
+            },
+            {
+                path: "create",
+                in_drawer: false,
+                multi_menu: false,
+                element: <>Customer create</>,
+            },
+            {
+                path: "show/:id",
+                in_drawer: false,
+                multi_menu: false,
+                element: <>Customer show</>,
+            },
+            {
+                path: "edit/:id",
+                in_drawer: false,
+                multi_menu: false,
+                element: <>Edit</>,
+            },
         ],
     },
 ]

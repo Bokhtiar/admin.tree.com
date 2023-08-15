@@ -8,19 +8,7 @@ import { useCallback, useEffect } from "react";
 
 function App() {
   const navigate = useNavigate();
-  /* Check stored token */
-  const isTokenStored = useCallback(async () => {
-    const storedToken = await getToken();
-    if (storedToken) {
-      navigate("/dashboard");
-    } else {
-      navigate('/')
-    }
-  }, [navigate]);
 
-  useEffect(() => {
-    isTokenStored();
-  }, [isTokenStored]);
 
 
   const mainRoutes = {
