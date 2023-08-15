@@ -1,6 +1,8 @@
-import { Category } from "../components/Category";
+
 import { DashboardLayout } from "../layouts/dashboardLayout";
 import { Navigate } from "react-router-dom";
+import { Category } from "../pages/Category";
+import { CategoryCreate } from "../pages/Category/create";
 
 const appRoutes = [
     {
@@ -39,7 +41,7 @@ const appRoutes = [
                 path: "create",
                 in_drawer: false,
                 multi_menu: false,
-                element: <>Customer create</>,
+                element: <CategoryCreate />,
             },
             {
                 path: "show/:id",
