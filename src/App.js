@@ -1,24 +1,19 @@
-import { Navigate, useNavigate, useRoutes } from "react-router-dom";
-import { MainLayout } from './layouts/mainLayout';
-import { permittedRoutes } from './routes';
-import { Login } from './components/Auth/Login';
-import { getToken } from "./utils/helper";
-import { useCallback, useEffect } from "react";
+
+import { permittedRoutes } from "./routes";
+import { Navigate, useRoutes } from "react-router-dom";
+import { DashboardLayout } from "./layouts/dashboard.layout";
 
 
-function App() {
-  const navigate = useNavigate();
-
-
+export const App = () => {
 
   const mainRoutes = {
     path: "/",
-    element: <MainLayout />,
+    element: <DashboardLayout />,
     children: [
       { path: "*", element: <Navigate to="/404" /> },
-      { path: "/", element: <Login /> },
-      { path: "reset", element: <>Reset</> },
-      { path: "404", element: <>Not found</> },
+      { path: "", element: "home" },
+      { path: "shop", element: "product" },
+      { path: "product/show/1", element: "product" }
     ],
   };
 
@@ -27,8 +22,9 @@ function App() {
   return (
     <>
       {routing}
+      {/* <ToastContainer /> */}
     </>
   );
 }
 
-export default App;
+
