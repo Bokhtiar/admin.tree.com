@@ -1,10 +1,10 @@
 
 import { permittedRoutes } from "./routes";
-import { Login } from "./components/Auth/Login";
 import { Navigate, useNavigate, useRoutes } from "react-router-dom";
 import { useCallback, useEffect } from "react";
 import { getToken } from "./utils/helper";
-
+import { ToastContainer } from "react-toastify";
+import { Login } from "./pages/auth/login";
 
 export const App = () => {
 
@@ -28,7 +28,7 @@ export const App = () => {
     element: "",
     children: [
       { path: "*", element: <Navigate to="/404" /> },
-      { path: "/", element: <Login/> },
+      { path: "/", element: <Login /> },
     ],
   };
 
@@ -37,7 +37,7 @@ export const App = () => {
   return (
     <>
       {routing}
-      {/* <ToastContainer /> */}
+      <ToastContainer />
     </>
   );
 }

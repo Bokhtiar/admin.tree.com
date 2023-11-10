@@ -19,8 +19,7 @@ const appRoutes = [
 
 /* Generate permitted routes */
 export const permittedRoutes = () => {
-    // const token = localStorage.getItem("token");
-    const token = "ok"
+    const token = localStorage.getItem("token");
     if (token) {
         return appRoutes;
     }
