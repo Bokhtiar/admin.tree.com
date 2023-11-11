@@ -1,8 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { removeToken } from "../../utils/helper";
 export const DashboardSidebar = () => {
+    const navigate = useNavigate()
+    /* logout */
+    const logout = () => {
+        removeToken()
+        navigate('/')
+    }
     return <>
-        <div className=" col-span-1 h-screen  bg-primary rounded-md hidden lg:flex">
-            <div className="px-4">
+        <div className=" col-span-1 h-screen  bg-gray-200  hidden lg:flex">
+            <div className="mx-auto">
                 <div className="flex  items-center my-2 mt-5">
                     <Link to="/dashboard" className="w-48 bg-white px-2 text-black font-content text-left flex items-center rounded-md py-1">
                         <img className="h-8 w-8" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMHozIxtgJx0gbDdzgKy7hcRkDoP7houIjY65EDeY&s" alt="" />
@@ -22,11 +29,11 @@ export const DashboardSidebar = () => {
                 </div>
 
                 <div className="flex  items-center my-2">
-                    <Link to="/dashboard/cart" className="w-48 bg-white px-2 text-black font-content text-left flex gap-1 items-center rounded-md py-1">
+                    <Link to="/dashboard/category" className="w-48 bg-white px-2 text-black font-content text-left flex gap-1 items-center rounded-md py-1">
                         <span class="material-symbols-outlined text-gray-600">
                             shopping_cart
                         </span>
-                        <span className=" font-semibold">Cart</span>
+                        <span className=" font-semibold">Category</span>
                     </Link>
                 </div>
 
@@ -58,12 +65,12 @@ export const DashboardSidebar = () => {
                 </div>
 
                 <div className="flex  items-center my-2">
-                    <Link to="" className="w-48 bg-white px-2 text-black font-content text-left flex gap-1 items-center rounded-md py-1">
+                    <span onClick={() => logout()} className="cursor-pointer w-48 bg-white px-2 text-black font-content text-left flex gap-1 items-center rounded-md py-1">
                         <span class="material-symbols-outlined text-gray-600">
                             logout
                         </span>
                         <span className=" font-semibold">Logout</span>
-                    </Link>
+                    </span>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import { Toastify } from "../components/toastify";
 
+
 export const getToken = () => {
     return localStorage.getItem("token");
 }
@@ -16,6 +17,7 @@ export const removeToken = () => {
 
 /* Global network error handeller */
 export const networkErrorHandeller = (error) => {
+
     if (
         error &&
         error.response &&

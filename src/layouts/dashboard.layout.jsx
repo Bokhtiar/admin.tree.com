@@ -6,10 +6,10 @@ export const DashboardLayout = () => {
     return (
         <>
             <DashboardNavbar />
-            <section className="container">
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-3 my-5">
+            <section className="">
+                <div className="grid grid-cols-1 md:grid-cols-5 ">
                     <DashboardSidebar />
-                    <div className=" col-span-4">
+                    <div className=" col-span-4 p-5">
                         <Outlet />
                     </div>
                 </div>

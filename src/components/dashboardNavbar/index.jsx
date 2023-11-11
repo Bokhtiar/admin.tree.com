@@ -4,8 +4,8 @@ export const DashboardNavbar = () => {
 
     return <>
         <div className="bg-base-100 sticky top-0 z-50">
-            <div className="bg-green-50">
-                <div className='navbar container'>
+            <div className=" bg-gray-200">
+                <div className='navbar '>
                     {/* responsive navbar start */}
                     <div className="navbar-start">
                         <div className="dropdown">
@@ -22,7 +22,7 @@ export const DashboardNavbar = () => {
                             </ul>
                         </div>
                         <Link className="" to="/">
-                            <img src="" alt="" style={{ height: "45px", width: "60px" }} />
+                            <img height={32} width={48} className="mx-auto d-block border border-green-100 rounded-full " src="https://www.homestratosphere.com/wp-content/uploads/2019/07/White-ash-tree.jpg" alt="" />
                         </Link>
                     </div>
                     {/* responsive navbar end */}

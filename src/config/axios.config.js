@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import { getToken } from "../utils/helper";
 
 const apiUrl = "http://localhost:8000/api/";
@@ -31,7 +31,7 @@ publicRequest.interceptors.request.use(
 /* Private request config */
 privateRequest.interceptors.request.use(
     async (config) => {
-        const token = await getToken();
+        const token = getToken();
         if (config.headers === undefined) {
             config.headers = {};
         }
