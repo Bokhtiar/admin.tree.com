@@ -2,10 +2,10 @@
 import { Link } from 'react-router-dom';
 import { NetworkServices } from '../../network';
 import DataTable from 'react-data-table-component';
+import { Toastify } from '../../components/toastify';
 import { useCallback, useEffect, useState } from 'react';
 import { networkErrorHandeller } from '../../utils/helper';
 import { SkeletonTable } from '../../components/loading/skeleton-table';
-import { Toastify } from '../../components/toastify';
 
 
 export const CategoryList = () => {

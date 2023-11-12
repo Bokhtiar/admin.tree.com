@@ -1,38 +1,38 @@
 export const SkeletonTable = () => {
     return <div>
         <tr className='w-full flex gap-10 my-5'>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
         </tr>
 
         <tr className='w-full flex gap-10 my-5 py-0'>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48 py-0'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60 py-0'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
         </tr>
 
         <tr className='w-full flex gap-10 my-5'>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
         </tr>
 
         <tr className='w-full flex gap-10 my-5 py-0'>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48 py-0'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60 py-0'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
         </tr>
 
         <tr className='w-full flex gap-10 my-5'>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
-            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-48'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
+            <td className='animate-pulse rounded-full bg-slate-200 h-2 w-60'></td>
         </tr>
 
     </div>
