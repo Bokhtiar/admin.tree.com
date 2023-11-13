@@ -1,15 +1,15 @@
+import { Link } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 import { NetworkServices } from '../../network/index'
 import { useCallback, useEffect, useState } from "react"
 import { BreadCrumbs } from "../../components/breadCrumbs"
 import { networkErrorHandeller } from "../../utils/helper"
 import { SkeletonTable } from '../../components/loading/skeleton-table';
-import { Link } from 'react-router-dom';
 
 export const Product = () => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
-    console.log("data", data);
+
     /* fetchData */
     const fetchData = useCallback(async () => {
         try {
@@ -27,7 +27,7 @@ export const Product = () => {
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [fetchData])
 
     const columns = [
         {

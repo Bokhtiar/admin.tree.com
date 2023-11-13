@@ -43,7 +43,7 @@ export const CategoryList = () => {
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [fetchData])
 
     const columns = [
         {

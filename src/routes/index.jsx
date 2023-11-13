@@ -6,6 +6,7 @@ import { CategoryEdit } from "../pages/category/edit";
 import { CategoryList } from '../pages/category/index'
 import { CategoryCreate } from "../pages/category/create";
 import { DashboardLayout } from "../layouts/dashboard.layout"
+import { ProductCreate } from "../pages/product/create";
 
 const appRoutes = [
     {
@@ -14,12 +15,15 @@ const appRoutes = [
         children: [
             { path: "*", element: <Navigate to="/404" /> },
             { path: "", element: <Dashboard /> },
+            
+            /** category */
             { path: "category", element: <CategoryList /> },
             { path: "category/create", element: <CategoryCreate /> },
             { path: "category/edit/:id", element: <CategoryEdit /> },
+
+            /** product */
             { path: "product", element:  <Product /> },
-            { path: "order", element: "order" },
-            { path: "profile", element: <>profile</> },
+            { path: "product/create", element: <ProductCreate/> },
         ],
     },
 ]; 

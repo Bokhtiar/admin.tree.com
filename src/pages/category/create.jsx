@@ -75,7 +75,7 @@ export const CategoryCreate = () => {
             <Link to="/dashboard/category">
                 <span class="border border-green-500 rounded-full material-symbols-outlined p-1">
                     list
-                </span>
+                </span> 
             </Link>
         </section>
 
