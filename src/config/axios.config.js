@@ -36,6 +36,7 @@ privateRequest.interceptors.request.use(
             config.headers = {};
         }
         if (token) {
+            config.headers["content-type"] = 'multipart/form-data';
             config.headers["Authorization"] = "Bearer " + token || "";
         }
         return config;

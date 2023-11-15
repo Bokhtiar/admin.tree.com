@@ -1,17 +1,25 @@
 import { useForm } from "react-hook-form"
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Toastify } from "../../components/toastify"
 import { NetworkServices } from '../../network/index'
 import { PrimaryButton } from "../../components/button";
 import { BreadCrumbs } from "../../components/breadCrumbs";
 import { networkErrorHandeller } from "../../utils/helper";
 import { SingleSelect, TextInput } from "../../components/input";
-import axios from "axios";
 
 export const ProductCreate = () => {
+    const navigate = useNavigate()
+    const [file, setFile] = useState()
     const [options, setOptions] = useState([]);
     const [loading, setLoading] = useState(false)
-    const [file, setFile] = useState(null)
-    const [sizeValues, setSizeValues] = useState([{ size: "", price: "" }])
+    const [selectedFile, setSelectedFile] = useState();
+    const [fields, setFields] = useState([{ size: 'm', price: '3' }]);
+
+    /** file submit */
+    function handleChangeFile(event) {
+        setFile(event.target.files[0])
+    }
 
     const {
         control,
@@ -19,57 +27,53 @@ export const ProductCreate = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = async(data) => {
-        setLoading(true)
-        const formData = new FormData();
+    const addField = () => {
+        setFields([...fields, { size: '', price: '' }]);
+    };
 
+    const removeField = (index) => {
+        const updatedFields = [...fields];
+        updatedFields.splice(index, 1);
+        setFields(updatedFields);
+    };
+
+    const handleChange = (index, field, value) => {
+        const updatedFields = [...fields];
+        updatedFields[index][field] = value;
+        setFields(updatedFields);
+    };
+
+    const onSubmit = async (data) => {
+        // setLoading(true)
+        const formData = new FormData();
         formData.append("image", file);
+        formData.append("size", JSON.stringify(fields));
+        formData.append("body", data?.body);
         formData.append("title", data?.title);
-        // formData.append("size", JSON.stringify(sizeValues));
-        // formData.append("price", data?.price);
-        // formData.append("ratting", data?.ratting);
-        // formData.append("category_id", data?.category_id?.value);
-        // formData.append("body", data?.body);
-        // formData.append("plant_body", data?.plant_body);
+        formData.append("price", data?.price);
+        formData.append("ratting", data?.ratting);
+        formData.append("plant_body", data?.plant_body);
+        formData.append("category_id", data?.category_id?.value);
 
         try {
-            // const response = await NetworkServices.Product.store(formData)
-            // console.log("response prodct", response);
-            axios.post("https://re", {
-                title: data.title,
-                image: file
-            })
-                .then((response) => {
-                    console.log(response);
-                });
+            console.log("data", formData);
+            console.log("field", fields);
+            const response = await NetworkServices.Product.store(formData)
+            navigate('/dashboard/product')
+            return Toastify.Success(response.data.message);
+
         } catch (error) {
             setLoading(false)
             networkErrorHandeller(error)
         }
     };
 
-    // let handleChange = (i, e) => {
-    //     console.log(i, [e.target.name]);
-    //     let newSizeValues = [...sizeValues];
-    //     newSizeValues[i][e.target.name] = e.target.value;
-    //     setSizeValues(newSizeValues);
-    // }
-
-    let addFormFields = () => {
-        setSizeValues([...sizeValues, { size: "", price: "" }])
-    }
-
-    let removeFormFields = (i) => {
-        let newSizeValues = [...sizeValues];
-        newSizeValues.splice(i, 1);
-        setSizeValues(newSizeValues)
-    }
     /** fetchCategory */
     const fetchCategory = async () => {
         try {
             const results = [];
             const response = await NetworkServices.Category.index()
-            console.log("cate res",response);
+            console.log("cate res", response);
             if (response.status === 200) {
                 const arrLenght = response.data.data.length;
                 if (arrLenght > 0) {
@@ -91,8 +95,8 @@ export const ProductCreate = () => {
         }
     };
 
-    useEffect(()=> {
-       fetchCategory() 
+    useEffect(() => {
+        fetchCategory()
     }, [])
 
     return <>
@@ -112,41 +116,13 @@ export const ProductCreate = () => {
                         rules={{ required: "Product title is required" }}
                     />
                     {/* file */}
-                    <input type="file" name="image" onChange={(e) => setFile(e.target.files[0])} />
-                  
 
-                    {/* size
-                    <div className=" col-span-2">
-                        {sizeValues.map((element, index) => (
-                            <div className="flex items-center gap-4" key={index}>
-                                <div>
-                                    <label className="text-gray-500 text-sm">Size</label>
-                                    <input placeholder="Size" className="w-full p-3 border border-gray-100" type="text" name="size"  onChange={(e) => handleChange(index, e)} />
-                                </div>
-                                <div>
-                                    <label className="text-gray-500 text-sm">Price</label>
-                                    <input placeholder="Price" className="w-full p-3 border border-gray-100" type="text" name="price" onChange={(e) => handleChange(index, e)} />
-                                </div>
-                                {
-                                    index ?
-                                        <>
-                                            <button type="button" className="button remove bg-red-500 rounded h-6 text-white mt-5" onClick={() => removeFormFields(index)}>
-                                                <span class="material-symbols-outlined">
-                                                    remove
-                                                </span>
-                                            </button>
-                                        </>
-                                        : <button className="button add bg-green-500 rounded h-6 text-white mt-5" type="button" onClick={() => addFormFields()}>
-                                            <span className="material-symbols-outlined">
-                                                add
-                                            </span>
-                                        </button>
-                                }
-                            </div>
-                        ))}
+                    <div className="">
+                        <p className="text-sm mb-1 text-gray-500">Image</p>
+                        <input className="w-full text-sm bg-white disabled:bg-gray-300 rounded-md outline-none p-[14px] border disabled:border-gray-300" type="file" onChange={handleChangeFile} />
                     </div>
                     {/* product price */}
-                    {/* <TextInput
+                    <TextInput
                         label="Product Price"
                         name="price"
                         type="text"
@@ -154,10 +130,10 @@ export const ProductCreate = () => {
                         control={control}
                         error={errors.price && errors.price.message}
                         rules={{ required: "Product price is required" }}
-                    /> */}
+                    />
 
                     {/* product title */}
-                    {/* <TextInput
+                    <TextInput
                         label="Product Ratting"
                         name="ratting"
                         type="text"
@@ -165,9 +141,9 @@ export const ProductCreate = () => {
                         control={control}
                         error={errors.ratting && errors.ratting.message}
                         rules={{ required: "Product ratting is required" }}
-                    /> */}
+                    />
                     {/* ctegory */}
-                    {/* <SingleSelect
+                    <SingleSelect
                         label="Select Category"
                         name="category_id"
                         control={control}
@@ -175,10 +151,10 @@ export const ProductCreate = () => {
                         options={options}
                         isClearable={true}
                         placeholder="Select category"
-                    /> */}
+                    />
 
                     {/* product title */}
-                    {/* <TextInput
+                    <TextInput
                         label="Product body"
                         name="body"
                         type="text"
@@ -186,10 +162,10 @@ export const ProductCreate = () => {
                         control={control}
                         error={errors.body && errors.body.message}
                         rules={{ required: "Product body is required" }}
-                    /> */}
+                    />
 
                     {/* product title */}
-                    {/* <TextInput
+                    <TextInput
                         label="Product plant body"
                         name="plant_body"
                         type="text"
@@ -197,13 +173,42 @@ export const ProductCreate = () => {
                         control={control}
                         error={errors.plant_body && errors.plant_body.message}
                         rules={{ required: "Product plant body is required" }}
-                    />  */}
-
-                    {/* submit button */}
-                    <div className="my-4 flex justify-center col-span-2">
-                        <PrimaryButton loading={loading} name="Product Submit"></PrimaryButton>
-                    </div>
+                    />
                 </div>
+                {fields.map((field, index) => (
+                    <div key={index} className="field-wrapper grid grid-cols-3 mt-5 gap-3">
+                        <input
+                            type="text"
+                            placeholder="Size"
+                            value={field.size}
+                            className="w-full border border-gray-200 rounded-md px-3"
+                            onChange={(e) => handleChange(index, 'size', e.target.value)}
+                        />
+                        <input
+                            type="number"
+                            placeholder="price"
+                            value={field.price}
+                            className="w-full border border-gray-200 rounded-md px-3"
+                            onChange={(e) => handleChange(index, 'price', e.target.value)}
+                        />
+                        <div className="">
+                            <span onClick={addField} class="border border-green-500 rounded-full material-symbols-outlined p-1">
+                                add
+                            </span>
+                            <span onClick={() => removeField(index)} class="border border-green-500 rounded-full material-symbols-outlined p-1">
+                                remove
+                            </span>
+                        </div>
+                    </div>
+                ))}
+
+
+
+                {/* submit button */}
+                <div className="my-4 flex justify-center col-span-2">
+                    <PrimaryButton loading={loading} name="Product Submit"></PrimaryButton>
+                </div>
+
             </form>
         </section>
     </>
