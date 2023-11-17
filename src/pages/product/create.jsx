@@ -158,6 +158,7 @@ export const ProductCreate = () => {
                         placeholder="Select category"
                     />
 
+                    {/* size */}
                     <div>
                         {fields.map((field, index) => (
                             <>
@@ -190,15 +191,8 @@ export const ProductCreate = () => {
                             </>
                         ))}
                     </div>
-
-
                 </div>
-
-
-
-
                 {/* product title */}
-
                 <div className="my-3">
                     <TextInput
                         label="Product body"
@@ -210,7 +204,6 @@ export const ProductCreate = () => {
                         rules={{ required: "Product body is required" }}
                     />
                 </div>
-
 
                 <div className="mt-5">
                     <p className="text-sm mb-1 text-gray-500">Plant Body</p>
@@ -236,12 +229,6 @@ export const ProductCreate = () => {
                         }}
                     />
                 </div>
-
-
-
-
-
-
 
                 {/* submit button */}
                 <div className="my-4 flex justify-center col-span-2">

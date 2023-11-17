@@ -10,7 +10,7 @@ export const Product = () => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
 
-    /* fetchData */
+    /* fetchData */ 
     const fetchData = useCallback(async () => {
         try {
             setLoading(true)
@@ -56,7 +56,7 @@ export const Product = () => {
             name: "Action",
             cell: (row) => (
                 <div className="flex gap-1">
-                    <Link to={`/dashboard/category/edit/${row.product_id}`}>
+                    <Link to={`/dashboard/product/edit/${row.product_id}`}>
                         <span className="bg-green-500 text-white btn btn-sm material-symbols-outlined">
                             edit
                         </span>
